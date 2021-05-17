@@ -89,7 +89,7 @@ int shift_or_bitwise(std::string source, std::string pattern)
         //     // std::cout << "Matched end at pos " << i << std::endl;
         //     return i;
         // }
-        if (~((D >> (pat_len - 1)) & 1) & 1)
+        if (/* ~((D >> (pat_len - 1)) & 1) & 1 */!((D >> (pat_len - 1)) & 1))
         {
             // std::cout << "Matched end at pos " << i << std::endl;
             return i;
