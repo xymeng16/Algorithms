@@ -134,17 +134,19 @@ int main()
 {
     std::string src("ABCCXBCAABCCXBCAABCCXBCPOQUUWAABCCXBCAABCCPOQUUWNNXKSHSLSNXBCAABCCXBCAABCCXBCAABCCPOQUUWNNXKSHSLSNXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXPOQUUWBCAABCCXBCAABCCCCXBCAABCCXBCAABPOQUUWNNXKSHSLSNJNFPOQUUCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCPOQUUWNNXKSHSLSNJNFPOQUUXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAAPOQUUWBCCCCXBCAABCCPOQUUWXBCAABCCXBCAABCPOQUUWNNXKSHSLSNJNFPOQUUCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABPOQUUWNNXKSHSLSNJNFPOQUUCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFJDKLABCABCA"), pat("POQUUWNNXKSHSLSNJNFPOQUUWNNX");
 
-    std::cout << "bitset implementation: " << shift_and_bitset(src, pat) << std::endl;
-    std::cout << "bitwise implementation: " << shift_and_bitwise(src, pat) << std::endl;
+    // std::cout << "bitset implementation: " << shift_and_bitset(src, pat) << std::endl;
+    // std::cout << "bitwise implementation: " << shift_and_bitwise(src, pat) << std::endl;
 
-    std::cout << "bitset shift-or implementation " << shift_or_bitset(src, pat) << std::endl;
-    std::cout << "bitwise shift-or implementation " << shift_or_bitwise(src, pat) << std::endl;
+    // std::cout << "bitset shift-or implementation " << shift_or_bitset(src, pat) << std::endl;
+    // std::cout << "bitwise shift-or implementation " << shift_or_bitwise(src, pat) << std::endl;
 
-    std::cout << "bitset implementation time: " << exec_time(shift_and_bitset, src, pat) << std::endl;
-    std::cout << "bitwise implementation time: " << exec_time(shift_and_bitwise, src, pat) << std::endl;
+    std::cout << "bitset shift-and implementation time: " << exec_time(shift_and_bitset, src, pat) << std::endl;
+    std::cout << "bitwise shift-and implementation time: " << exec_time(shift_and_bitwise, src, pat) << std::endl;
 
     std::cout << "bitset shift-or implementation time: " << exec_time(shift_or_bitset, src, pat) << std::endl;
     std::cout << "bitwise shift-or implementation time: " << exec_time(shift_or_bitwise, src, pat) << std::endl;
+
+    std::cout << "standard library strcmp time: " << exec_time(strcmp, src.c_str(), pat.c_str()) << std::endl;
 
     return 0;
 }
