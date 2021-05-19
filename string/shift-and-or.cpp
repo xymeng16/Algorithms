@@ -124,7 +124,7 @@ int shift_or_bitset(std::string source, std::string pattern)
     {
         D = (D << 1) | B[source[i] - 'A'];
         // std::cout << "D:" << D << "B[pattern[i] - 'A']" << B[source[i] - 'A'] << std::endl;
-        if (!D[pat_len - 1])
+        if (~D[pat_len - 1])
         {
             // std::cout << "Matched end at pos " << i << std::endl;
             return i;
@@ -137,13 +137,13 @@ int shift_or_bitset(std::string source, std::string pattern)
 
 int main()
 {
-    std::string src("ABCDABCCscABCASSW"), pat("ABCA");
+    std::string src("ABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFJDKLABCABCA"), pat("POQUUWNNXKSHSLSNJNFPOQUUWNNX");
 
     std::cout << "bitset implementation: " << shift_and_bitset(src, pat) << std::endl;
     std::cout << "bitwise implementation: " << shift_and_bitwise(src, pat) << std::endl;
 
-    std::cout << "bitwise shift-or implementation " << shift_or_bitwise(src, pat) << std::endl;
     std::cout << "bitset shift-or implementation " << shift_or_bitset(src, pat) << std::endl;
+    std::cout << "bitwise shift-or implementation " << shift_or_bitwise(src, pat) << std::endl;
 
     std::cout << "bitset implementation time: " << exec_time(shift_and_bitset, src, pat) << std::endl;
     std::cout << "bitwise implementation time: " << exec_time(shift_and_bitwise, src, pat) << std::endl;
