@@ -150,7 +150,5 @@ int main()
     std::cout << "bitset shift-or implementation time: " << exec_time(shift_or_bitset, src, pat) << std::endl;
     std::cout << "bitwise shift-or implementation time: " << exec_time(shift_or_bitwise, src, pat) << std::endl;
 
-    std::cout << "standard library strcmp time: " << exec_time(strcmp, src.c_str(), pat.c_str()) << std::endl;
-
     return 0;
 }
