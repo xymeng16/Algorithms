@@ -84,7 +84,7 @@ int shift_or_bitwise(std::string source, std::string pattern)
     for (size_t i = 0; i < src_len; i++)
     {
         D = (((D << 1))) | B[source[i] - 'A'];
-        if (/* ~((D >> (pat_len - 1)) & 1) & 1 */!((D >> (pat_len - 1)) & 1))
+        if (/* ~((D >> (pat_len - 1)) & 1) & 1 */ !((D >> (pat_len - 1)) & 1))
         {
             // std::cout << "Matched end at pos " << i << std::endl;
             return i;
@@ -135,7 +135,7 @@ int main()
     std::string src("ABCCXBCAABCCXBCAABCCXBCPOQUUWAABCCXBCAABCCPOQUUWNNXKSHSLSNXBCAABCCXBCAABCCXBCAABCCPOQUUWNNXKSHSLSNXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXPOQUUWBCAABCCXBCAABCCCCXBCAABCCXBCAABPOQUUWNNXKSHSLSNJNFPOQUUCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCPOQUUWNNXKSHSLSNJNFPOQUUXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAAPOQUUWBCCCCXBCAABCCPOQUUWXBCAABCCXBCAABCPOQUUWNNXKSHSLSNJNFPOQUUCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABPOQUUWNNXKSHSLSNJNFPOQUUCCXBCAABCCXBCAABCCXBCAABCCCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAABCCXBCAPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFPOQUUWNNXKSHSLSNJNFJDKLABCABCA"), pat("POQUUWNNXKSHSLSNJNFPOQUUWNNX");
 
     const unsigned int test_num = 100;
-    
+    double time_elapsed = 0.0;
     // std::cout << "bitset implementation: " << shift_and_bitset(src, pat) << std::endl;
     // std::cout << "bitwise implementation: " << shift_and_bitwise(src, pat) << std::endl;
 
@@ -143,12 +143,39 @@ int main()
     // std::cout << "bitwise shift-or implementation " << shift_or_bitwise(src, pat) << std::endl;
 
     std::cout << "Scale of chrono:" << (double)std::chrono::high_resolution_clock::period::num / std::chrono::high_resolution_clock::period::den << std::endl; // Results in a nanosecond.
+    for (size_t i = 0; i < test_num; ++i)
+    {
+        time_elapsed += exec_time(shift_and_bitset, src, pat);
+    }
+    std::cout << "bitset shift-and Time elapsed: " << time_elapsed / test_num << std::endl;
+    time_elapsed = 0;
 
-    std::cout << "bitset shift-and implementation time: " << exec_time(shift_and_bitset, src, pat) << std::endl;
-    std::cout << "bitwise shift-and implementation time: " << exec_time(shift_and_bitwise, src, pat) << std::endl;
+    for (size_t i = 0; i < test_num; ++i)
+    {
+        time_elapsed += exec_time(shift_and_bitwise, src, pat);
+    }
+    std::cout << "bitwise shift-and Time elapsed: " << time_elapsed / test_num << std::endl;
+    time_elapsed = 0;
 
-    std::cout << "bitset shift-or implementation time: " << exec_time(shift_or_bitset, src, pat) << std::endl;
-    std::cout << "bitwise shift-or implementation time: " << exec_time(shift_or_bitwise, src, pat) << std::endl;
+    for (size_t i = 0; i < test_num; ++i)
+    {
+        time_elapsed += exec_time(shift_or_bitset, src, pat);
+    }
+    std::cout << "bitset shift-or Time elapsed: " << time_elapsed / test_num << std::endl;
+    time_elapsed = 0;
+
+    for (size_t i = 0; i < test_num; ++i)
+    {
+        time_elapsed += exec_time(shift_or_bitwise, src, pat);
+    }
+    std::cout << "bitset shift-or Time elapsed: " << time_elapsed / test_num << std::endl;
+    time_elapsed = 0;
+
+    // std::cout << "bitset shift-and implementation time: " << exec_time(shift_and_bitset, src, pat) << std::endl;
+    // std::cout << "bitwise shift-and implementation time: " << exec_time(shift_and_bitwise, src, pat) << std::endl;
+
+    // std::cout << "bitset shift-or implementation time: " << exec_time(shift_or_bitset, src, pat) << std::endl;
+    // std::cout << "bitwise shift-or implementation time: " << exec_time(shift_or_bitwise, src, pat) << std::endl;
 
     return 0;
 }
